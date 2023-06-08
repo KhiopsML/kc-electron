@@ -38,7 +38,7 @@
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "publishReleases": "npm run build-visu && cd ../khiops-covisualization-electron && npm run build:prod && electron-builder build --windows --ia32 -p always && electron-builder build --linux -p always && electron-builder build --mac -p always",
     "removeDist": "rimraf dist && rimraf release && rimraf .cache",
-    "removeMocks": "rimraf dist/khiops-covisualization/mocks",
+    "removeMocks": "rimraf dist/khiops-visualization/mocks",
     "electron:linux": "npm run build:prod && electron-builder build --linux -p always",
     "electron:windows": "npm run build:prod && electron-builder build --windows --ia32 -p always",
     "electron:windows:local": "npm run build:prod && electron-builder build --windows --ia32",
