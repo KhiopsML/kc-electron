@@ -1,0 +1,33 @@
+{
+  "MENU": {
+    "FILE": "File",
+    "EXIT": "Exit",
+    "TOOLS": "Tools",
+    "HELP": "Help",
+    "VIEW": "View",
+    "REPORT_A_BUG": "Report a bug",
+    "DEBUG_TOOLS": "Debug tools",
+    "INFOS": "Infos",
+    "OPEN": "Open",
+    "SAVE": "Save",
+    "SAVE_AS": "Save as",
+    "SAVE_CURRENT_HIERARCHY_AS": "Save current hierarchy as",
+    "CLOSE_FILE": "Close file",
+    "EXTERNAL_DATA": "External data",
+    "IMPORT_EXTERNAL_DATA": "Import external data",
+    "RESTART_APP": "Restart",
+    "CHANNELS": "Channels",
+    "LATEST": "Stable version (Default)",
+    "BETA": "Beta versions",
+    "RELEASE_NOTES": "What's new ?",
+    "LIB_VERSION": "Khiops lib version",
+    "VERSION": "Version"
+  },
+  "UPDATE": {
+    "UPDATE_AVAILABLE": "Update available",
+    "UPDATE_ERROR": "Update error",
+    "DOWNLOAD_COMPLETE": "Update downloaded",
+    "DOWNLOADING": "Downloading",
+    "WAITING_FOR_DOWNLOAD": "Waiting For download"
+  }
+}

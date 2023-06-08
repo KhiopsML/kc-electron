@@ -1,0 +1,70 @@
+{
+  "asar": true,
+  "productName": "khiops covisualization",
+  "appId": "com.khiops.covisualization",
+  "afterSign": "./scripts/notarize.js",
+  "directories": {
+    "output": "release/"
+  },
+  "publish": [{
+		"provider": "github",
+		"owner": "khiopsrelease",
+		"repo": "kv-release",
+		"token": "${env.GH_PUBLISH_TOKEN}"
+	}],
+  "files": [
+    "**/*",
+    "!**/*.ts",
+    "!*.map",
+    "!package.json",
+    "!package-lock.json",
+    {
+      "from": "../dist",
+      "filter": ["**/*"]
+    }
+  ],
+  "nsis": {
+    "runAfterFinish": false,
+    "perMachine": false,
+    "oneClick": false,
+    "installerLanguages": ["en_US"]
+  },
+  "win": {
+    "icon": "dist/khiops-covisualization/icons/256x256.png",
+    "target": ["nsis"],
+    "fileAssociations": [
+      {
+        "ext": "khj",
+        "name": "khj File"
+      }
+    ]
+  },
+  "mac": {
+    "icon": "dist/assets/icons",
+    "entitlements": "./build/entitlements.mac.plist",
+    "entitlementsInherit": "./build/entitlements.mac.plist",
+    "gatekeeperAssess": false,
+    "hardenedRuntime": true,
+    "target": ["dmg", "zip"],
+    "fileAssociations": [
+      {
+        "ext": "khj",
+        "name": "khj File",
+        "role": "Editor"
+      }
+    ]
+  },
+  "linux": {
+    "icon": "dist/khiops-covisualization/icons/",
+    "target": ["deb", "AppImage", "zip", "rpm"],
+    "category": "Utility",
+    "fileAssociations": [
+      {
+        "ext": "khj",
+        "name": "khj File",
+        "mimeType": "application/khj",
+        "role": "Editor"
+      }
+    ]
+  }
+}
