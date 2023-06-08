@@ -96,13 +96,15 @@ export class MenuService {
     if (opendFiles.files.length > 0) {
       // in reverse order
       for (let i = opendFiles.files.length - 1; i >= 0; i--) {
-        menu1.submenu.splice(2, 0, {
-          label: this.fileSystemService.getFileHistory().files[i],
-          click: () => {
-            // this.khiopsLibraryService.trackEvent('click', 'open_file');
-            this.openFile(this.fileSystemService.getFileHistory().files[i]);
-          },
-        });
+        if (typeof opendFiles.files[i] === 'string') {
+          menu1.submenu.splice(2, 0, {
+            label: this.fileSystemService.getFileHistory().files[i],
+            click: () => {
+              // this.khiopsLibraryService.trackEvent('click', 'open_file');
+              this.openFile(this.fileSystemService.getFileHistory().files[i]);
+            },
+          });
+        }
       }
     }
 
