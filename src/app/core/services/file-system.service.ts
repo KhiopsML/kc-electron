@@ -26,6 +26,7 @@ export class FileSystemService {
     isBigJsonFile: boolean;
     loadingInfo: string;
   };
+  currentFilePath = '';
 
   constructor(
     private ngzone: NgZone,
@@ -72,13 +73,14 @@ export class FileSystemService {
       });
   }
 
-  setTitleBar(filename) {
+  setTitleBar(filepath) {
     // Set the filename to the title bar
-    if (filename) {
+    if (filepath) {
+      this.currentFilePath = filepath;
       (async () => {
         try {
           await this.electronService.ipcRenderer.invoke('set-title-bar-name', {
-            title: 'Khiops Covisualization ' + filename,
+            title: 'Khiops Covisualization ' + filepath,
           });
         } catch (error) {
           console.log('error', error);
@@ -220,5 +222,40 @@ export class FileSystemService {
         files: [],
       };
     }
+  }
+
+  save(datas) {
+    this.saveFile(this.currentFilePath, datas);
+  }
+
+  saveAs(datas) {
+    const dialogOpts: any = {
+      defaultPath: '',
+      filters: [
+        {
+          name: 'json',
+          extensions: ['json', 'khcj'],
+        },
+      ],
+    };
+    this.electronService.dialog.showSaveDialog(dialogOpts).then((result) => {
+      const filename = result.filePath;
+      if (filename) {
+        this.saveFile(filename, datas);
+      }
+    });
+  }
+
+  saveFile(filename, datas) {
+    this.electronService.fs.writeFileSync(
+      filename,
+      JSON.stringify(datas, null, 2), // spacing level = 2
+      'utf-8'
+    );
+    this.configService.snack(
+      this.translate.instant('SNACKS.SAVE_FILE_SUCCESS'),
+      4000,
+      'success'
+    );
   }
 }

@@ -29,5 +29,8 @@
     "DOWNLOAD_COMPLETE": "Update downloaded",
     "DOWNLOADING": "Downloading",
     "WAITING_FOR_DOWNLOAD": "Waiting For download"
+  },
+  "SNACKS": {
+    "SAVE_FILE_SUCCESS": "Save file success"
   }
 }

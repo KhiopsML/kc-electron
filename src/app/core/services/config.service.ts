@@ -22,7 +22,20 @@ export class ConfigService {
     this.config.openReleaseNotesDialog();
   }
 
+  constructDatasToSave() {
+    this.config.constructDatasToSave();
+  }
+
+  constructSavedHierarchyToSave() {
+    this.config.constructSavedHierarchyToSave();
+  }
+
   openChannelDialog(cb) {
     this.config.openChannelDialog(cb);
   }
+
+  snack(text, duration, panelClass) {
+    this.config.snack(text, duration, panelClass);
+  }
+
 }

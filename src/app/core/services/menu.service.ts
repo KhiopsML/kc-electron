@@ -56,21 +56,30 @@ export class MenuService {
             this.closeFile();
           },
         },
-        // {
-        // 	type: 'separator'
-        // },
-        // {
-        // 	label: this.translate.instant('MENU.SAVE'),
-        // 	click: () => {
-        // 		this.save();
-        // 	}
-        // },
-        // {
-        // 	label: this.translate.instant('MENU.SAVE_AS'),
-        // 	click: () => {
-        // 		this.saveAs();
-        // 	}
-        // },
+        {
+          type: 'separator',
+        },
+        {
+          label: this.translate.instant('MENU.SAVE'),
+          click: () => {
+            // this.khiopsLibraryService.trackEvent('click', 'save');
+            this.save();
+          },
+        },
+        {
+          label: this.translate.instant('MENU.SAVE_AS'),
+          click: () => {
+            // this.khiopsLibraryService.trackEvent('click', 'save_as');
+            this.saveAs();
+          },
+        },
+        {
+          label: this.translate.instant('MENU.SAVE_CURRENT_HIERARCHY_AS'),
+          click: () => {
+            // this.khiopsLibraryService.trackEvent('click', 'save_current_hierarchy');
+            this.saveCurrentHierarchyAs();
+          },
+        },
         {
           type: 'separator',
         },
@@ -328,12 +337,17 @@ export class MenuService {
   }
 
   save() {
-    // this.dialogRef.closeAll();
-    // this.fileSaverService.save(this.appName, this.saveService.constructDatasToSave());
+    const datasToSave = this.configService.getConfig().constructDatasToSave();
+    this.fileSystemService.save(datasToSave);
   }
 
   saveAs() {
-    // this.dialogRef.closeAll();
-    // this.fileSaverService.saveAs(this.saveService.constructDatasToSave());
+    const datasToSave = this.configService.getConfig().constructDatasToSave();
+    this.fileSystemService.saveAs(datasToSave);
+  }
+
+  saveCurrentHierarchyAs() {
+    const datasToSave = this.configService.getConfig().constructSavedHierarchyToSave();
+    this.fileSystemService.saveAs(datasToSave);
   }
 }
