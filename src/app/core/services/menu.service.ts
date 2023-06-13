@@ -347,7 +347,11 @@ export class MenuService {
   }
 
   saveCurrentHierarchyAs() {
-    const datasToSave = this.configService.getConfig().constructSavedHierarchyToSave();
-    this.fileSystemService.saveAs(datasToSave);
+    document.body.style.cursor = 'wait';
+    setTimeout(() => {
+      const datasToSave = this.configService.getConfig().constructSavedHierarchyToSave();
+      this.fileSystemService.saveAs(datasToSave);
+			document.body.style.cursor = 'default';
+		}, 1000);
   }
 }
