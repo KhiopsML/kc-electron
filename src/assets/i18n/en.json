@@ -26,7 +26,7 @@
   "UPDATE": {
     "UPDATE_AVAILABLE": "Update available",
     "UPDATE_ERROR": "Update error",
-    "DOWNLOAD_COMPLETE": "Update downloaded",
+    "DOWNLOAD_COMPLETE": "The installation will start",
     "DOWNLOADING": "Downloading",
     "WAITING_FOR_DOWNLOAD": "Waiting For download"
   },
