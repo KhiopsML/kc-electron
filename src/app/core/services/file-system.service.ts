@@ -234,7 +234,7 @@ export class FileSystemService {
       filters: [
         {
           name: 'json',
-          extensions: ['json', 'khcj'],
+          extensions: ['khcj', 'json'],
         },
       ],
     };
