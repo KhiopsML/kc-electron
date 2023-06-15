@@ -250,6 +250,7 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
       'A new version has been downloaded. Restart the application to apply the updates.',
   };
 
+  //@ts-ignore
   dialog.showMessageBox(win, dialogOpts).then(function (res) {
     log.info('showMessageBox', res);
     if (res.response === 0) {
