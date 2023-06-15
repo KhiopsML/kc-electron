@@ -71,6 +71,16 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         console.log('onThemeChanged', data);
         this.setTheme(data);
       },
+      onReadFile: (filename, cb) => {
+        console.log('onReadFile', filename);
+        this.electronService.fs.readFile(
+          filename,
+          'utf-8',
+          (err, datas: any) => {
+            cb(datas);
+          }
+        );
+      },
     });
     this.configService.setConfig(this.config);
   }
