@@ -9,7 +9,7 @@
   "publish": [{
 		"provider": "github",
 		"owner": "khiopsrelease",
-		"repo": "kv-release",
+		"repo": "kc-release",
 		"token": "${env.GH_PUBLISH_TOKEN}"
 	}],
   "files": [
