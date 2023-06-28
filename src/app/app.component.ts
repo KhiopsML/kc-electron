@@ -141,6 +141,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         this.constructMenu();
       }
     );
+    this.electronService.ipcRenderer.on('before-quit', (event, arg) => {
+      console.info('before-quit', event, arg);
+      this.saveBeforeQuit();
+    });
 
     this.constructMenu();
 
@@ -168,6 +172,28 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         setTimeout(() => {
           this.fileSystemService.openFile(arg);
         });
+      }
+    });
+  }
+
+  saveBeforeQuit(mustRestart: boolean = false) {
+    this.configService.openSaveBeforeQuitDialog((e) => {
+      if (e === 'confirm') {
+        const datasToSave = this.configService
+          .getConfig()
+          .constructDatasToSave();
+        this.fileSystemService.save(datasToSave);
+        if (mustRestart) {
+          this.electronService.remote.app.relaunch();
+        }
+        this.electronService.remote.app.exit(0);
+      } else if (e === 'cancel') {
+        // Do nothing
+      } else if (e === 'reject') {
+        if (mustRestart) {
+          this.electronService.remote.app.relaunch();
+        }
+        this.electronService.remote.app.exit(0);
       }
     });
   }

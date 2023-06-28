@@ -99,6 +99,13 @@ function createWindow(): BrowserWindow {
     win = null;
   });
 
+  win.on('close', (event) => {
+    event.preventDefault();
+    if (win && win.webContents) {
+      win.webContents.send('before-quit');
+    }
+  });
+
   return win;
 }
 

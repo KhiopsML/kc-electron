@@ -34,6 +34,10 @@ export class ConfigService {
     this.config.openChannelDialog(cb);
   }
 
+  openSaveBeforeQuitDialog(cb) {
+    this.config.openSaveBeforeQuitDialog(cb);
+  }
+
   snack(text, duration, panelClass) {
     this.config.snack(text, duration, panelClass);
   }
