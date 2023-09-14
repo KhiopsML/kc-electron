@@ -34,8 +34,8 @@
     "target": ["nsis"],
     "fileAssociations": [
       {
-        "ext": "khj",
-        "name": "khj File"
+        "ext": "khcj",
+        "name": "khcj File"
       }
     ]
   },
@@ -48,8 +48,8 @@
     "target": ["dmg", "zip"],
     "fileAssociations": [
       {
-        "ext": "khj",
-        "name": "khj File",
+        "ext": "khcj",
+        "name": "khcj File",
         "role": "Editor"
       }
     ]
@@ -60,9 +60,9 @@
     "category": "Utility",
     "fileAssociations": [
       {
-        "ext": "khj",
-        "name": "khj File",
-        "mimeType": "application/khj",
+        "ext": "khcj",
+        "name": "khcj File",
+        "mimeType": "application/khcj",
         "role": "Editor"
       }
     ]
