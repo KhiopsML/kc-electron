@@ -110,7 +110,10 @@ export class MenuService {
             label: this.fileSystemService.getFileHistory().files[i],
             click: () => {
               // this.khiopsLibraryService.trackEvent('click', 'open_file');
-              this.openFile(this.fileSystemService.getFileHistory().files[i]);
+              this.openFile(
+                this.fileSystemService.getFileHistory().files[i],
+                refreshCb
+              );
             },
           });
         }
@@ -312,9 +315,11 @@ export class MenuService {
     });
   }
 
-  openFile(filename) {
+  openFile(filename, callbackDone) {
     // this.dialogRef.closeAll();
-    this.fileSystemService.openFile(filename);
+    this.fileSystemService.openFile(filename, () => {
+      callbackDone();
+    });
   }
 
   closeFile() {
