@@ -105,7 +105,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       console.info('update-available', event, arg);
       this.btnUpdate = 'update-available';
       this.btnUpdateText =
-        '🔁 ' + this.translate.instant('UPDATE.UPDATE_AVAILABLE');
+        '🔁 ' + this.translate.instant('GLOBAL_UPDATE_UPDATE_AVAILABLE');
       this.constructMenu();
     });
     this.electronService.ipcRenderer.on(
@@ -119,7 +119,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       console.info('update-error', event, arg);
       this.menuService.setUpdateInProgress(false);
       // this.btnUpdate = 'update-error';
-      // this.btnUpdateText = '⚠ ' + this.translate.instant('UPDATE.UPDATE_ERROR');
+      // this.btnUpdateText = '⚠ ' + this.translate.instant('GLOBAL_UPDATE_UPDATE_ERROR');
       this.constructMenu();
     });
     this.electronService.ipcRenderer.on(
@@ -129,12 +129,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         if (arg.percent === 100) {
           this.btnUpdate = 'download-complete';
           this.btnUpdateText =
-            '✅ ' + this.translate.instant('UPDATE.DOWNLOAD_COMPLETE');
+            '✅ ' + this.translate.instant('GLOBAL_UPDATE_DOWNLOAD_COMPLETE');
         } else {
           this.btnUpdate = 'downloading';
           this.btnUpdateText =
             '🔁 ' +
-            this.translate.instant('UPDATE.DOWNLOADING') +
+            this.translate.instant('GLOBAL_UPDATE_DOWNLOADING') +
             ' ' +
             parseInt(arg && arg.percent, 10) +
             '%';
@@ -214,7 +214,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
           this.btnUpdateText =
             '🔁 ' +
-            this.translate.instant('UPDATE.WAITING_FOR_DOWNLOAD') +
+            this.translate.instant('GLOBAL_UPDATE_WAITING_FOR_DOWNLOAD') +
             ' ...';
           await this.electronService.ipcRenderer.invoke(
             'launch-update-available'
