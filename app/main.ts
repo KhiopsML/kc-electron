@@ -37,9 +37,17 @@ app.on('will-finish-launching', function () {
   log.info('will-finish-launching');
 
   app.on('open-file', function (event, filepath) {
-    log.info('open-file');
     fileToLoad = filepath;
     event.preventDefault();
+
+    if (fileToLoad) {
+      log.info('fileToLoad');
+      setTimeout(function () {
+        if (win && win.webContents && fileToLoad) {
+          win.webContents.send('file-open-system', fileToLoad);
+        }
+      }, 2000);
+    }
   });
 });
 
@@ -146,15 +154,6 @@ ipcMain.on('get-input-file', async (event, arg) => {
     console.log('error', error);
   }
 });
-
-if (fileToLoad) {
-  log.info('fileToLoad');
-  setTimeout(function () {
-    if (win && win.webContents && fileToLoad) {
-      win.webContents.send('file-open-system', fileToLoad);
-    }
-  }, 2000);
-}
 
 ipcMain.handle('launch-update-available', async (event, arg) => {
   try {
