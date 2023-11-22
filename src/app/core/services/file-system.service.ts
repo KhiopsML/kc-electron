@@ -253,7 +253,7 @@ export class FileSystemService {
       'utf-8'
     );
     this.configService.snack(
-      this.translate.instant('SNACKS.SAVE_FILE_SUCCESS'),
+      this.translate.instant('GLOBAL_SNACKS_SAVE_FILE_SUCCESS'),
       4000,
       'success'
     );

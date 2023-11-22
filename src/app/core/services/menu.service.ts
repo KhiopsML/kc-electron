@@ -34,10 +34,10 @@ export class MenuService {
     const opendFiles = this.fileSystemService.getFileHistory();
 
     const menu1 = {
-      label: this.translate.instant('MENU.FILE'),
+      label: this.translate.instant('GLOBAL_MENU_FILE'),
       submenu: [
         {
-          label: this.translate.instant('MENU.OPEN'),
+          label: this.translate.instant('GLOBAL_MENU_OPEN'),
           click: () => {
             // this.khiopsLibraryService.trackEvent('click', 'open_file');
             this.openFileDialog(refreshCb);
@@ -50,7 +50,7 @@ export class MenuService {
           type: 'separator',
         },
         {
-          label: this.translate.instant('MENU.CLOSE_FILE'),
+          label: this.translate.instant('GLOBAL_MENU_CLOSE_FILE'),
           click: () => {
             // this.khiopsLibraryService.trackEvent('click', 'close_file');
             this.closeFile();
@@ -60,21 +60,21 @@ export class MenuService {
           type: 'separator',
         },
         {
-          label: this.translate.instant('MENU.SAVE'),
+          label: this.translate.instant('GLOBAL_MENU_SAVE'),
           click: () => {
             // this.khiopsLibraryService.trackEvent('click', 'save');
             this.save();
           },
         },
         {
-          label: this.translate.instant('MENU.SAVE_AS'),
+          label: this.translate.instant('GLOBAL_MENU_SAVE_AS'),
           click: () => {
             // this.khiopsLibraryService.trackEvent('click', 'save_as');
             this.saveAs();
           },
         },
         {
-          label: this.translate.instant('MENU.SAVE_CURRENT_HIERARCHY_AS'),
+          label: this.translate.instant('GLOBAL_MENU_SAVE_CURRENT_HIERARCHY_AS'),
           click: () => {
             // this.khiopsLibraryService.trackEvent('click', 'save_current_hierarchy');
             this.saveCurrentHierarchyAs();
@@ -84,7 +84,7 @@ export class MenuService {
           type: 'separator',
         },
         {
-          label: this.translate.instant('MENU.RESTART_APP'),
+          label: this.translate.instant('GLOBAL_MENU_RESTART_APP'),
           click: () => {
             // this.khiopsLibraryService.trackEvent('click', 'restart_app');
             this.electronService.remote.app.relaunch();
@@ -92,7 +92,7 @@ export class MenuService {
           },
         },
         {
-          label: this.translate.instant('MENU.EXIT'),
+          label: this.translate.instant('GLOBAL_MENU_EXIT'),
           click: () => {
             // this.khiopsLibraryService.trackEvent('click', 'exit_app');
             this.electronService.remote.app.quit();
@@ -121,7 +121,7 @@ export class MenuService {
     }
 
     const menu2 = {
-      label: this.translate.instant('MENU.HELP'),
+      label: this.translate.instant('GLOBAL_MENU_HELP'),
       submenu: [
         {
           role: 'toggleDevTools',
@@ -134,7 +134,7 @@ export class MenuService {
         },
         {
           label:
-            this.translate.instant('MENU.VERSION') +
+            this.translate.instant('GLOBAL_MENU_VERSION') +
             ' ' +
             LibVersionService.getAppVersion(),
           click: () => {
@@ -143,22 +143,22 @@ export class MenuService {
         },
         // {
         //   label:
-        //     this.translate.instant('MENU.LIB_VERSION') +
+        //     this.translate.instant('GLOBAL_MENU_LIB_VERSION') +
         //     ' ' +
         //     LibVersionService.getAppVersion(),
         // },
         {
-          label: this.translate.instant('MENU.RELEASE_NOTES'),
+          label: this.translate.instant('GLOBAL_MENU_RELEASE_NOTES'),
           click: () => {
             // this.khiopsLibraryService.trackEvent('page_view', 'release_notes');
             this.configService.openReleaseNotesDialog();
           },
         },
         {
-          label: this.translate.instant('MENU.CHANNELS'),
+          label: this.translate.instant('GLOBAL_MENU_CHANNELS'),
           submenu: [
             {
-              label: this.translate.instant('MENU.LATEST'),
+              label: this.translate.instant('GLOBAL_MENU_LATEST'),
               type: 'radio',
               click: () => {
                 if (this.currentChannel !== 'latest') {
@@ -169,7 +169,7 @@ export class MenuService {
               checked: this.currentChannel === 'latest',
             },
             {
-              label: this.translate.instant('MENU.BETA'),
+              label: this.translate.instant('GLOBAL_MENU_BETA'),
               type: 'radio',
               click: () => {
                 if (this.currentChannel !== 'beta') {
@@ -219,7 +219,7 @@ export class MenuService {
     };
 
     const menu3 = {
-      label: this.translate.instant('MENU.VIEW'),
+      label: this.translate.instant('GLOBAL_MENU_VIEW'),
       submenu: [
         {
           role: 'togglefullscreen',
@@ -255,7 +255,7 @@ export class MenuService {
     };
 
     const menu4 = {
-      label: this.translate.instant('MENU.REPORT_A_BUG'),
+      label: this.translate.instant('GLOBAL_MENU_REPORT_A_BUG'),
 
       click: () => {
         // this.khiopsLibraryService.trackEvent('page_view', 'report_issue');
@@ -263,14 +263,14 @@ export class MenuService {
         const subject =
           LibVersionService.getAppTitle() +
           ': ' +
-          this.translate.instant('MENU.REPORT_A_BUG');
+          this.translate.instant('GLOBAL_MENU_REPORT_A_BUG');
         const message =
           '\n\n--------------------------------------------------\n' +
-          this.translate.instant('MENU.VERSION') +
+          this.translate.instant('GLOBAL_MENU_VERSION') +
           ': ' +
           LibVersionService.getAppVersion() +
           '\n';
-        // this.translate.instant('MENU.LIB_VERSION') +
+        // this.translate.instant('GLOBAL_MENU_LIB_VERSION') +
         // ': ' +
         // LibVersionService.getAppVersion() +
         // '\n';
