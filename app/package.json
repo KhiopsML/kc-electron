@@ -4,7 +4,7 @@
   "version": "11.0.3",
   "description": "khiops covisualization",
   "license": "UNLICENSED",
-  "repository": "https://github.com/khiopsrelease/kv-release",
+  "repository": "https://github.com/KhiopsML/kc-electron",
   "author": {
     "name": "Orange",
     "email": "khiops@orange.com"

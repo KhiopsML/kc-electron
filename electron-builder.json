@@ -8,8 +8,8 @@
   },
   "publish": [{
 		"provider": "github",
-		"owner": "khiopsrelease",
-		"repo": "kc-release",
+		"owner": "KhiopsML",
+		"repo": "kc-electron",
 		"token": "${env.GH_PUBLISH_TOKEN}"
 	}],
   "files": [
