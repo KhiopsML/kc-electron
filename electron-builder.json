@@ -9,8 +9,7 @@
   "publish": [{
 		"provider": "github",
 		"owner": "KhiopsML",
-		"repo": "kc-electron",
-		"token": "${env.GH_PUBLISH_TOKEN}"
+		"repo": "kc-electron"
 	}],
   "files": [
     "**/*",
