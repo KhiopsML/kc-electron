@@ -52,7 +52,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   setAppConfig() {
     this.config = this.covisualizationComponent.nativeElement;
-    console.log('file: app.component.ts:55 ~ AppComponent ~ setAppConfig ~ this.config:', this.config);
 
     //@ts-ignore
     this.config.setConfig({
