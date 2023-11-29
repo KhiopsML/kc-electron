@@ -26,8 +26,8 @@ export class ConfigService {
     this.config.constructDatasToSave();
   }
 
-  constructSavedHierarchyToSave() {
-    this.config.constructSavedHierarchyToSave();
+  constructSavedJson() {
+    this.config.constructSavedJson();
   }
 
   openChannelDialog(cb) {
