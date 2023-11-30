@@ -354,7 +354,7 @@ export class MenuService {
   saveCurrentHierarchyAs() {
     document.body.style.cursor = 'wait';
     setTimeout(() => {
-      const datasToSave = this.configService.getConfig().constructSavedJson();
+      const datasToSave = this.configService.getConfig().constructPrunedDatasToSave();
       this.fileSystemService.saveAs(datasToSave);
 			document.body.style.cursor = 'default';
 		}, 1000);
