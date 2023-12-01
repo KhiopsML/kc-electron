@@ -3,7 +3,7 @@ name: Build/release
 on:
   push:
     tags:
-      - "*"
+      - "v*"
 
 # on: workflow_dispatch
 # on: push
