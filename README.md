@@ -1,3 +1,6 @@
+![Build Releases](https://github.com/KhiopsML/kc-electron/actions/workflows/release.yml/badge.svg) ![test workflow](https://github.com/KhiopsML/khiops-visualization/actions/workflows/test.yml/badge.svg)
+
+
 # Introduction
 
 The Electron application that encapsulates Khiops Covisualization
