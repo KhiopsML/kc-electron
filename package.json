@@ -64,7 +64,7 @@
     "electron-log": "3.0.8",
     "electron-updater": "4.3.8",
     "event-stream": "4.0.1",
-    "khiops-visualization": "11.0.4",
+    "khiops-visualization": "11.0.5",
     "rxjs": "7.8.0",
     "tslib": "^2.5.0",
     "zone.js": "~0.12.0"
