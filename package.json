@@ -63,7 +63,7 @@
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
     "zone.js": "0.14.2",
-    "khiops-visualization": "11.0.5",
+    "khiops-visualization": "11.0.6",
     "electron-log": "3.0.8",
     "electron-updater": "6.1.7"
   },
