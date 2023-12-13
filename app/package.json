@@ -1,7 +1,7 @@
 {
   "name": "khiops-covisualization",
   "title": "khiops Covisualization",
-  "version": "11.0.4",
+  "version": "11.0.5",
   "description": "khiops covisualization",
   "license": "UNLICENSED",
   "repository": "https://github.com/KhiopsML/kc-electron",
