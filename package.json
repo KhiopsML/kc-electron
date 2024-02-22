@@ -2,7 +2,7 @@
   "name": "khiops-covisualization",
   "title": "khiops Covisualization",
   "main": "app/main.js",
-  "version": "11.0.5",
+  "version": "11.0.6",
   "private": true,
   "browser": {
     "child_process": false,
@@ -65,7 +65,7 @@
     "electron-updater": "6.1.7",
     "event-stream": "4.0.1",
     "JSONStream": "1.3.5",
-    "khiops-visualization": "11.0.6",
+    "khiops-visualization": "11.0.8",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
     "zone.js": "0.14.4"
