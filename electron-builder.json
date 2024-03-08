@@ -6,11 +6,13 @@
   "directories": {
     "output": "release/"
   },
-  "publish": [{
-		"provider": "github",
-		"owner": "KhiopsML",
-		"repo": "kc-electron"
-	}],
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "KhiopsML",
+      "repo": "kc-electron"
+    }
+  ],
   "files": [
     "**/*",
     "!**/*.ts",

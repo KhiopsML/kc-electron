@@ -66,7 +66,6 @@ function createWindow(): BrowserWindow {
       nodeIntegration: true,
       allowRunningInsecureContent: serve,
       contextIsolation: false, // false if you want to run e2e test with Spectron
-      partition: 'persist:webviewsession', // Allow cookies into webview
     },
   });
 
