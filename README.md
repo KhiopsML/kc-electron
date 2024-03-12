@@ -4,7 +4,8 @@
 <a href="">
 
 # Introduction
-The Electron application that encapsulates Khiops Covisualization
+The Electron application that encapsulates Khiops Covisualization from https://github.com/KhiopsML/khiops-visualization
+
 Based on https://github.com/maximegris/angular-electron.git
 
 # Installation
