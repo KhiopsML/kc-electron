@@ -1,9 +1,9 @@
 {
   "name": "khiops-covisualization",
   "title": "khiops Covisualization",
-  "version": "11.0.7",
+  "version": "11.0.8",
   "description": "Khiops Covisualization",
-  "license": "UNLICENSED",
+  "license": "BSD-3-Clause-Clear",
   "repository": "https://github.com/KhiopsML/kc-electron",
   "author": {
     "name": "Orange",
