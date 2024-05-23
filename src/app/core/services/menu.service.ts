@@ -74,7 +74,9 @@ export class MenuService {
           },
         },
         {
-          label: this.translate.instant('GLOBAL_MENU_SAVE_CURRENT_HIERARCHY_AS'),
+          label: this.translate.instant(
+            'GLOBAL_MENU_SAVE_CURRENT_HIERARCHY_AS'
+          ),
           click: () => {
             // this.trackerService.trackEvent('click', 'save_current_hierarchy');
             this.saveCurrentHierarchyAs();
@@ -183,32 +185,6 @@ export class MenuService {
                       refreshCb();
                     }
                   });
-                  // this.trackerService.trackEvent('click', 'release', 'beta');
-                  // this.dialogRef.closeAll();
-                  // this.ngzone.run(() => {
-                  //   const config = new MatDialogConfig();
-                  //   const dialogRef: MatDialogRef<ConfirmDialogComponent> =
-                  //     this.dialog.open(ConfirmDialogComponent, config);
-                  //   dialogRef.componentInstance.title = this.translate.instant(
-                  //     'GLOBAL.ENABLE_BETA_VERSIONS'
-                  //   );
-                  //   dialogRef.componentInstance.message = this.translate.instant(
-                  //     'GLOBAL.BETA_VERSIONS_WARNING'
-                  //   );
-                  //   dialogRef
-                  //     .afterClosed()
-                  //     .toPromise()
-                  //     .then((e) => {
-                  //       if (e === 'confirm') {
-                  //         // User confirm
-                  //         this.setChannel('beta');
-                  //       } else if (e === 'cancel') {
-                  //         this.setChannel('latest');
-                  //         // re construct the menu to set channel to latest
-                  //         this.constructMenu();
-                  //       }
-                  //     });
-                  // });
                 }
               },
               checked: this.currentChannel === 'beta',
@@ -354,9 +330,11 @@ export class MenuService {
   saveCurrentHierarchyAs() {
     document.body.style.cursor = 'wait';
     setTimeout(() => {
-      const datasToSave = this.configService.getConfig().constructPrunedDatasToSave();
+      const datasToSave = this.configService
+        .getConfig()
+        .constructPrunedDatasToSave();
       this.fileSystemService.saveAs(datasToSave);
-			document.body.style.cursor = 'default';
-		}, 1000);
+      document.body.style.cursor = 'default';
+    }, 1000);
   }
 }
