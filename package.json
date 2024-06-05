@@ -72,7 +72,7 @@
     "electron-updater": "6.2.1",
     "event-stream": "4.0.1",
     "JSONStream": "1.3.5",
-    "khiops-visualization": "11.2.1",
+    "khiops-visualization": "11.2.2",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
     "zone.js": "0.14.6"
