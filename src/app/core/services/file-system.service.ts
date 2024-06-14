@@ -109,9 +109,7 @@ export class FileSystemService {
     }
   }
   readFile(filename): any {
-    this.fileLoaderDatas.datas = undefined;
-    this.fileLoaderDatas.isLoadingDatas = true;
-    this.fileLoaderDatas.isBigJsonFile = false;
+    this.initialize();
 
     return new Promise((resolve, reject) => {
       this.electronService.fs.stat(filename, (err, stats) => {
