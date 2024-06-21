@@ -77,6 +77,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         console.log('onThemeChanged', data);
         this.setTheme(data);
       },
+      readLocalFile: (path: string, cb: Function) => {
+        return this.readLocalFile(path, cb);
+      },
     });
     this.configService.setConfig(this.config);
   }
@@ -88,6 +91,22 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
           await this.electronService.ipcRenderer.invoke(
             'set-' + theme + '-mode'
           );
+        }
+      } catch (error) {
+        console.log('error', error);
+      }
+    })();
+  }
+
+  readLocalFile(path: string, cb: Function) {
+    (async () => {
+      try {
+        if (this.electronService.isElectron) {
+          const content = await this.electronService.ipcRenderer.invoke(
+            'read-local-file',
+            path
+          );
+          cb(content);
         }
       } catch (error) {
         console.log('error', error);

@@ -207,6 +207,17 @@ ipcMain.handle('set-light-mode', () => {
   nativeTheme.themeSource = 'light';
 });
 
+ipcMain.handle('read-local-file', async (event, filePath) => {
+  try {
+    const data = fs.readFileSync(filePath, 'utf8');
+    console.log('local file loaded:', data);
+    return data;
+  } catch (err) {
+    console.error('Error when loading file:', err);
+    return null;
+  }
+});
+
 autoUpdater.on('checking-for-update', () => {
   log.info('checking-for-update');
 });
