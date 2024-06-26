@@ -98,10 +98,20 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     })();
   }
 
-  readLocalFile(path: string, cb: Function) {
+  readLocalFile(input: string | File, cb: Function) {
     (async () => {
       try {
         if (this.electronService.isElectron) {
+          let path: string = '';
+
+          if (typeof input === 'string') {
+            // If command is called by saved json datas
+            path = input;
+          } else if (input instanceof File) {
+            // If command is called by user
+            path = input.path;
+          }
+
           const content = await this.electronService.ipcRenderer.invoke(
             'read-local-file',
             path
