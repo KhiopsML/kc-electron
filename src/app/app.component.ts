@@ -105,11 +105,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
           let path: string = '';
 
           if (typeof input === 'string') {
-            // If command is called by saved json datas
-            path = input;
-          } else if (input instanceof File) {
             // If command is called by user
-            path = input.path;
+            path = input;
+          } else {
+            // If command is called by saved json datas
+            path = input?.path;
           }
 
           const content = await this.electronService.ipcRenderer.invoke(
