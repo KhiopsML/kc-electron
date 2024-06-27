@@ -7046,10 +7046,10 @@ keyv@^4.0.0, keyv@^4.5.3:
   dependencies:
     json-buffer "3.0.1"
 
-khiops-visualization@11.4.0:
-  version "11.4.0"
-  resolved "https://registry.yarnpkg.com/khiops-visualization/-/khiops-visualization-11.4.0.tgz#453473fcae6e6f669e8cff3d254ad501c264d7ea"
-  integrity sha512-7sdfPNEvG2rafWmzRhBCh4TU8BZ7EDyBlPwVvRFHFbSGKPnyYimOHHuB9vyQNSQssrYNETQgN4wTLxDN2wVLvg==
+khiops-visualization@11.4.1:
+  version "11.4.1"
+  resolved "https://registry.yarnpkg.com/khiops-visualization/-/khiops-visualization-11.4.1.tgz#107051c780146f14b312fc9c276eed2155681277"
+  integrity sha512-R03Y6c02z1XphMwwe07HnVOELpnWK0ccJJ+OQon9g3DUjC7NGAh2wGEzywcQvYUBBCfhMZcgogszM5lYlI1mpg==
 
 kind-of@^6.0.2:
   version "6.0.3"
