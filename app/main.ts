@@ -44,12 +44,16 @@ app.on('will-finish-launching', function () {
       log.info('fileToLoad');
 
       if (win) {
-        win.webContents.send('file-open-system', fileToLoad);
+        setTimeout(() => {
+          win.webContents.send('file-open-system', fileToLoad);
+        }, 2500);
       } else {
         // if win is not ready, wait for it
-        app.once('browser-window-created', () => {
-          win.webContents.send('file-open-system', fileToLoad);
-        });
+        setTimeout(() => {
+          app.once('browser-window-created', () => {
+            win.webContents.send('file-open-system', fileToLoad);
+          });
+        }, 2500);
       }
     }
   });
