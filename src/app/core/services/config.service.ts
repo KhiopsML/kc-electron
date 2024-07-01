@@ -18,10 +18,6 @@ export class ConfigService {
     this.config.setDatas(datas);
   }
 
-  openReleaseNotesDialog() {
-    this.config.openReleaseNotesDialog();
-  }
-
   constructDatasToSave() {
     this.config.constructDatasToSave();
   }

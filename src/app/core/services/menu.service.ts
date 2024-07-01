@@ -140,7 +140,9 @@ export class MenuService {
             ' ' +
             LibVersionService.getAppVersion(),
           click: () => {
-            this.configService.openReleaseNotesDialog();
+            this.electronService.shell.openExternal(
+              'https://github.com/KhiopsML/kc-electron/releases'
+            );
           },
         },
         // {
@@ -153,7 +155,9 @@ export class MenuService {
           label: this.translate.instant('GLOBAL_MENU_RELEASE_NOTES'),
           click: () => {
             // this.trackerService.trackEvent('page_view', 'release_notes');
-            this.configService.openReleaseNotesDialog();
+            this.electronService.shell.openExternal(
+              'https://github.com/KhiopsML/kc-electron/releases'
+            );
           },
         },
         {
