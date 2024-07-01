@@ -47,6 +47,7 @@
     "gatekeeperAssess": false,
     "hardenedRuntime": true,
     "target": ["dmg", "zip"],
+    "arch": ["x64", "arm64"],
     "fileAssociations": [
       {
         "ext": "khcj",
