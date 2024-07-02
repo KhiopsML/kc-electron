@@ -117,7 +117,7 @@ function createWindow(): BrowserWindow {
 
   win.on('close', (event) => {
     event.preventDefault();
-    if (win && win.webContents) {
+    if (win && win.webContents && !isUpdating) {
       win.webContents.send('before-quit');
     }
   });
@@ -267,8 +267,11 @@ autoUpdater.on('download-progress', (progressObj) => {
   }
 });
 
+let isUpdating = false;
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
   log.info('update-downloaded', event);
+
+  isUpdating = true;
 
   const dialogOpts = {
     type: 'info',
