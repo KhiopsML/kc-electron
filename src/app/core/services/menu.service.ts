@@ -38,8 +38,8 @@ export class MenuService {
       submenu: [
         {
           label: this.translate.instant('GLOBAL_MENU_OPEN'),
+          accelerator: 'CommandOrControl+O',
           click: () => {
-            // this.trackerService.trackEvent('click', 'open_file');
             this.openFileDialog(refreshCb);
           },
         },
@@ -52,7 +52,6 @@ export class MenuService {
         {
           label: this.translate.instant('GLOBAL_MENU_CLOSE_FILE'),
           click: () => {
-            // this.trackerService.trackEvent('click', 'close_file');
             this.closeFile();
           },
         },
@@ -61,15 +60,15 @@ export class MenuService {
         },
         {
           label: this.translate.instant('GLOBAL_MENU_SAVE'),
+          accelerator: 'CommandOrControl+S',
           click: () => {
-            // this.trackerService.trackEvent('click', 'save');
             this.save();
           },
         },
         {
           label: this.translate.instant('GLOBAL_MENU_SAVE_AS'),
+          accelerator: 'CommandOrControl+Shift+S',
           click: () => {
-            // this.trackerService.trackEvent('click', 'save_as');
             this.saveAs();
           },
         },
@@ -77,8 +76,8 @@ export class MenuService {
           label: this.translate.instant(
             'GLOBAL_MENU_SAVE_CURRENT_HIERARCHY_AS'
           ),
+          accelerator: 'CommandOrControl+Shift+Alt+S',
           click: () => {
-            // this.trackerService.trackEvent('click', 'save_current_hierarchy');
             this.saveCurrentHierarchyAs();
           },
         },
@@ -87,21 +86,23 @@ export class MenuService {
         },
         {
           label: this.translate.instant('GLOBAL_MENU_RESTART_APP'),
+          accelerator: 'CommandOrControl+R',
           click: () => {
-            // this.trackerService.trackEvent('click', 'restart_app');
             this.electronService.remote.app.relaunch();
             this.electronService.remote.app.exit(0);
           },
         },
         {
           label: this.translate.instant('GLOBAL_MENU_EXIT'),
+          accelerator: 'CommandOrControl+Q',
           click: () => {
-            // this.trackerService.trackEvent('click', 'exit_app');
             this.electronService.remote.app.quit();
           },
         },
       ],
     };
+
+    menu1.submenu[3].accelerator = 'CommandOrControl+W';
 
     // insert history files
     if (opendFiles.files.length > 0) {
@@ -111,7 +112,6 @@ export class MenuService {
           menu1.submenu.splice(2, 0, {
             label: this.fileSystemService.getFileHistory().files[i],
             click: () => {
-              // this.trackerService.trackEvent('click', 'open_file');
               this.openFile(
                 this.fileSystemService.getFileHistory().files[i],
                 refreshCb
@@ -127,9 +127,6 @@ export class MenuService {
       submenu: [
         {
           role: 'toggleDevTools',
-          click: () => {
-            // this.trackerService.trackEvent('page_view', 'debugger');
-          },
         },
         {
           type: 'separator',
@@ -145,16 +142,10 @@ export class MenuService {
             );
           },
         },
-        // {
-        //   label:
-        //     this.translate.instant('GLOBAL_MENU_LIB_VERSION') +
-        //     ' ' +
-        //     LibVersionService.getAppVersion(),
-        // },
+
         {
           label: this.translate.instant('GLOBAL_MENU_RELEASE_NOTES'),
           click: () => {
-            // this.trackerService.trackEvent('page_view', 'release_notes');
             this.electronService.shell.openExternal(
               'https://github.com/KhiopsML/kc-electron/releases'
             );
@@ -168,7 +159,6 @@ export class MenuService {
               type: 'radio',
               click: () => {
                 if (this.currentChannel !== 'latest') {
-                  // this.trackerService.trackEvent('click', 'release', 'latest');
                   this.setChannel('latest');
                 }
               },
@@ -203,9 +193,6 @@ export class MenuService {
       submenu: [
         {
           role: 'togglefullscreen',
-          click: () => {
-            // this.trackerService.trackEvent('click', 'full_screen');
-          },
         },
         {
           type: 'separator',
@@ -213,23 +200,14 @@ export class MenuService {
         {
           role: 'resetZoom',
           accelerator: 'CommandOrControl+nummult',
-          click: () => {
-            // this.trackerService.trackEvent('click', 'zoom', 'reset');
-          },
         },
         {
           role: 'zoomIn',
           accelerator: 'CommandOrControl+numadd',
-          click: () => {
-            // this.trackerService.trackEvent('click', 'zoom', 'in');
-          },
         },
         {
           role: 'zoomOut',
           accelerator: 'CommandOrControl+numsub',
-          click: () => {
-            // this.trackerService.trackEvent('click', 'zoom', 'out');
-          },
         },
       ],
     };
@@ -238,7 +216,6 @@ export class MenuService {
       label: this.translate.instant('GLOBAL_MENU_REPORT_A_BUG'),
 
       click: () => {
-        // this.trackerService.trackEvent('page_view', 'report_issue');
         const emailId = 'bug.khiopsvisualization@orange.com';
         const subject =
           LibVersionService.getAppTitle() +
@@ -250,10 +227,7 @@ export class MenuService {
           ': ' +
           LibVersionService.getAppVersion() +
           '\n';
-        // this.translate.instant('GLOBAL_MENU_LIB_VERSION') +
-        // ': ' +
-        // LibVersionService.getAppVersion() +
-        // '\n';
+
         this.electronService.shell.openExternal(
           'mailto:' +
             emailId +
@@ -276,7 +250,6 @@ export class MenuService {
       const menu5 = {
         label: btnUpdateText,
         click: () => {
-          // this.trackerService.trackEvent('click', 'update_version');
           if (btnUpdate === 'update-available' && !this.updateInProgress) {
             updateCb();
           }
@@ -296,7 +269,6 @@ export class MenuService {
   }
 
   openFile(filename, callbackDone) {
-    // this.dialogRef.closeAll();
     this.fileSystemService.openFile(filename, () => {
       callbackDone();
     });
