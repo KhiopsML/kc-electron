@@ -2,6 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { ElectronService } from './electron.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from './config.service';
+import Toastify from 'toastify-js';
 
 let es: any;
 try {
@@ -103,7 +104,7 @@ export class FileSystemService {
           }
         })
         .catch((error) => {
-          console.warn(this.translate.instant('SNACKS.OPEN_FILE_ERROR'), error);
+          console.warn(this.translate.instant('OPEN_FILE_ERROR'), error);
           this.fileLoaderDatas.isLoadingDatas = false;
         });
     }
@@ -164,9 +165,19 @@ export class FileSystemService {
                 }
               } else {
                 this.fileLoaderDatas.isLoadingDatas = false;
-                this.fileLoaderDatas.datas = JSON.parse(datas);
-                this.fileLoaderDatas.datas.filename = filename;
-                resolve(this.fileLoaderDatas.datas);
+                try {
+                  this.fileLoaderDatas.datas = JSON.parse(datas);
+                  this.fileLoaderDatas.datas.filename = filename;
+                  resolve(this.fileLoaderDatas.datas);
+                } catch (e) {
+                  Toastify({
+                    text: this.translate.instant('OPEN_FILE_ERROR'),
+                    gravity: 'bottom',
+                    position: 'center',
+                    duration: 3000,
+                  }).showToast();
+                  reject();
+                }
               }
             }
           );

@@ -1413,6 +1413,15 @@
     fs-extra "^9.0.1"
     promise-retry "^2.0.1"
 
+"@electron/notarize@2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@electron/notarize/-/notarize-2.3.2.tgz#20a52a961747be8542a35003380988a0d3fe15e6"
+  integrity sha512-zfayxCe19euNwRycCty1C7lF7snk9YwfRpB5M8GLr1a4ICH63znxaPNAubrMvj0yDvVozqfgsdYpXVUnpWBDpg==
+  dependencies:
+    debug "^4.1.1"
+    fs-extra "^9.0.1"
+    promise-retry "^2.0.1"
+
 "@electron/osx-sign@1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@electron/osx-sign/-/osx-sign-1.0.5.tgz#0af7149f2fce44d1a8215660fd25a9fb610454d8"
@@ -7046,10 +7055,10 @@ keyv@^4.0.0, keyv@^4.5.3:
   dependencies:
     json-buffer "3.0.1"
 
-khiops-visualization@11.4.1:
-  version "11.4.1"
-  resolved "https://registry.yarnpkg.com/khiops-visualization/-/khiops-visualization-11.4.1.tgz#107051c780146f14b312fc9c276eed2155681277"
-  integrity sha512-R03Y6c02z1XphMwwe07HnVOELpnWK0ccJJ+OQon9g3DUjC7NGAh2wGEzywcQvYUBBCfhMZcgogszM5lYlI1mpg==
+khiops-visualization@11.4.2:
+  version "11.4.2"
+  resolved "https://registry.yarnpkg.com/khiops-visualization/-/khiops-visualization-11.4.2.tgz#c05e0102ded5810c9c8911e9d835b8a64c425f90"
+  integrity sha512-BSyDvtXKZgeDice0ZgOQzP7gk6luY2tSM05eRX/u03izDGwaneq1s7KtruHWqQkq2OUe+ySY4U3lwKjpVeZrlw==
 
 kind-of@^6.0.2:
   version "6.0.3"
@@ -9899,6 +9908,11 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+toastify-js@1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/toastify-js/-/toastify-js-1.12.0.tgz#cc1c4f5c7e7380e854e20bedceb51980ea29f64d"
+  integrity sha512-HeMHCO9yLPvP9k0apGSdPUWrUbLnxUKNFzgUoZp1PHCLploIX/4DSQ7V8H25ef+h4iO9n0he7ImfcndnN6nDrQ==
 
 toidentifier@1.0.1:
   version "1.0.1"
