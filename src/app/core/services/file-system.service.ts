@@ -105,7 +105,13 @@ export class FileSystemService {
         })
         .catch((error) => {
           console.warn(this.translate.instant('OPEN_FILE_ERROR'), error);
-          this.fileLoaderDatas.isLoadingDatas = false;
+          this.closeFile();
+          Toastify({
+            text: this.translate.instant('OPEN_FILE_ERROR'),
+            gravity: 'bottom',
+            position: 'center',
+            duration: 3000,
+          }).showToast();
         });
     }
   }
