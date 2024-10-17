@@ -12,7 +12,7 @@
   "main": "main.js",
   "dependencies": {
     "@electron/remote": "2.1.2",
-    "electron-log": "3.0.8",
+    "electron-log": "3.0.9",
     "electron-updater": "6.3.1"
   }
 }
