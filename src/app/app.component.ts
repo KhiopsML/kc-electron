@@ -202,7 +202,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   saveBeforeQuit(mustRestart: boolean = false) {
-    this.electronService.ipcRenderer.sendSync('bring-windows-to-top');
     this.configService.openSaveBeforeQuitDialog((e) => {
       if (e === 'confirm') {
         const datasToSave = this.configService

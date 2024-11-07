@@ -117,6 +117,8 @@ function createWindow(): BrowserWindow {
 
   win.on('close', (event) => {
     event.preventDefault();
+    win?.show(); // Show window if hidden or minimized
+    win?.focus(); // Focus the window to bring it to the front
     win?.webContents?.send('before-quit');
   });
 
@@ -150,13 +152,6 @@ try {
   // Catch Error
   // throw e;
 }
-
-ipcMain.on('bring-windows-to-top', async (event, arg) => {
-  if (win) {
-    win.show(); // Show window if hidden or minimized
-    win.focus(); // Focus the window to bring it to the front
-  }
-});
 
 ipcMain.on('get-input-file', async (event, arg) => {
   try {
