@@ -56,7 +56,7 @@
     "release": "electron-builder --windows --publish always",
     "electron:linux": "npm run build:prod && electron-builder build --linux -p always",
     "electron:windows": "npm run build:prod && electron-builder build --windows --ia32 -p always",
-    "electron:windows:local": "npm run quickbuild-visu && npm run build:prod && electron-builder build --windows --ia32",
+    "electron:windows:local": "npm run build-visu && yarn install --force && npm run build:prod && electron-builder build --windows --ia32",
     "electron:windows32": "npm run build:prod && electron-builder build --windows --ia32 -p always",
     "electron:windows64": "npm run build:prod && electron-builder build --windows --x64 -p always",
     "electron:publish": "npm run build:prod && electron-builder build --publish=never",
