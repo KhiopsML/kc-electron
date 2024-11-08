@@ -218,7 +218,7 @@ ipcMain.handle('set-light-mode', () => {
 ipcMain.handle('read-local-file', async (event, filePath) => {
   try {
     const data = fs.readFileSync(filePath, 'utf8');
-    console.log('local file loaded:', data);
+    // console.log('local file loaded:', data);
     return data;
   } catch (err) {
     console.error('Error when loading file:', err);

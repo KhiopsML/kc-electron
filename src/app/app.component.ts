@@ -77,8 +77,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         console.log('onThemeChanged', data);
         this.setTheme(data);
       },
-      readLocalFile: (path: string, cb: Function) => {
-        return this.readLocalFile(path, cb);
+      readLocalFile: (file: File | any, cb: Function) => {
+        return this.readLocalFile(file, cb);
       },
     });
     this.configService.setConfig(this.config);
@@ -98,25 +98,25 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     })();
   }
 
-  readLocalFile(input: string | File, cb: Function) {
+  readLocalFile(input: File | any, cb: Function) {
     (async () => {
       try {
         if (this.electronService.isElectron) {
           let path: string = '';
 
-          if (typeof input === 'string') {
-            // If command is called by user
-            path = input;
-          } else {
+          if (input?.path) {
             // If command is called by saved json datas
             path = input?.path;
+          } else {
+            // If command is called by user
+            path = this.electronService.electron.webUtils.getPathForFile(input);
           }
 
           const content = await this.electronService.ipcRenderer.invoke(
             'read-local-file',
             path
           );
-          cb(content);
+          cb(content, path);
         }
       } catch (error) {
         console.log('error', error);
