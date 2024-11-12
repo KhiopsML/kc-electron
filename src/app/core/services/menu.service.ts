@@ -26,10 +26,10 @@ export class MenuService {
   }
 
   setMenu(
-    btnUpdate = '',
-    btnUpdateText = '',
-    refreshCb = undefined,
-    updateCb = undefined
+    btnUpdate: string = '',
+    btnUpdateText: string = '',
+    refreshCb: Function | undefined = undefined,
+    updateCb: Function | undefined = undefined
   ) {
     const opendFiles = this.fileSystemService.getFileHistory();
 
@@ -169,14 +169,14 @@ export class MenuService {
               type: 'radio',
               click: () => {
                 if (this.currentChannel !== 'beta') {
-                  this.configService.openChannelDialog((e) => {
+                  this.configService.openChannelDialog((e: string) => {
                     if (e === 'confirm') {
                       // User confirm
                       this.setChannel('beta');
                     } else if (e === 'cancel') {
                       this.setChannel('latest');
                       // re construct the menu to set channel to latest
-                      refreshCb();
+                      refreshCb && refreshCb();
                     }
                   });
                 }
@@ -251,7 +251,7 @@ export class MenuService {
         label: btnUpdateText,
         click: () => {
           if (btnUpdate === 'update-available' && !this.updateInProgress) {
-            updateCb();
+            updateCb && updateCb();
           }
         },
       };
@@ -268,9 +268,9 @@ export class MenuService {
     });
   }
 
-  openFile(filename, callbackDone) {
+  openFile(filename: string, callbackDone: Function | undefined) {
     this.fileSystemService.openFile(filename, () => {
-      callbackDone();
+      callbackDone && callbackDone();
     });
   }
 
@@ -278,13 +278,13 @@ export class MenuService {
     this.fileSystemService.closeFile();
   }
 
-  setChannel(channel) {
+  setChannel(channel: string) {
     localStorage.setItem('KHIOPS_COVISUALIZATION_CHANNEL', channel);
     this.currentChannel = channel;
 
     (async () => {
       try {
-        await this.electronService.ipcRenderer.invoke(
+        await this.electronService.ipcRenderer?.invoke(
           'launch-check-for-update'
         );
       } catch (error) {

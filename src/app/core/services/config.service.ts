@@ -26,16 +26,15 @@ export class ConfigService {
     this.config.constructPrunedDatasToSave();
   }
 
-  openChannelDialog(cb) {
+  openChannelDialog(cb: Function) {
     this.config.openChannelDialog(cb);
   }
 
-  openSaveBeforeQuitDialog(cb) {
+  openSaveBeforeQuitDialog(cb: Function) {
     this.config.openSaveBeforeQuitDialog(cb);
   }
 
-  snack(text, duration, panelClass) {
+  snack(text: string, duration: number, panelClass: string) {
     this.config.snack(text, duration, panelClass);
   }
-
 }
