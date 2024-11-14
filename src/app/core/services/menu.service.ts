@@ -142,7 +142,20 @@ export class MenuService {
             );
           },
         },
-
+        {
+          label:
+            this.translate.instant('GLOBAL_MENU_LIB_VERSION') +
+            ' ' +
+            LibVersionService.getLibVersion(),
+          click: () => {
+            this.electronService.shell.openExternal(
+              'https://github.com/KhiopsML/khiops-visualization/releases'
+            );
+          },
+        },
+        {
+          type: 'separator',
+        },
         {
           label: this.translate.instant('GLOBAL_MENU_RELEASE_NOTES'),
           click: () => {
@@ -150,6 +163,9 @@ export class MenuService {
               'https://github.com/KhiopsML/kc-electron/releases'
             );
           },
+        },
+        {
+          type: 'separator',
         },
         {
           label: this.translate.instant('GLOBAL_MENU_CHANNELS'),
@@ -226,6 +242,10 @@ export class MenuService {
           this.translate.instant('GLOBAL_MENU_VERSION') +
           ': ' +
           LibVersionService.getAppVersion() +
+          '\n' +
+          this.translate.instant('GLOBAL_MENU_LIB_VERSION') +
+          ': ' +
+          LibVersionService.getLibVersion() +
           '\n';
 
         this.electronService.shell.openExternal(
