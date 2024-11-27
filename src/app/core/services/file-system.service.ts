@@ -76,18 +76,16 @@ export class FileSystemService {
 
   setTitleBar(filepath: string) {
     // Set the filename to the title bar
-    if (filepath) {
-      this.currentFilePath = filepath;
-      (async () => {
-        try {
-          await this.electronService.ipcRenderer?.invoke('set-title-bar-name', {
-            title: 'Khiops Covisualization ' + filepath,
-          });
-        } catch (error) {
-          console.log('error', error);
-        }
-      })();
-    }
+    this.currentFilePath = filepath;
+    (async () => {
+      try {
+        await this.electronService.ipcRenderer?.invoke('set-title-bar-name', {
+          title: 'Khiops Covisualization ' + filepath,
+        });
+      } catch (error) {
+        console.log('error', error);
+      }
+    })();
   }
 
   openFile(filename: string, callbackDone?: Function | undefined) {
@@ -196,7 +194,8 @@ export class FileSystemService {
   closeFile() {
     this.initialize();
     this.ngzone.run(() => {
-      this.configService.setDatas(undefined);
+      this.configService.setDatas();
+      this.setTitleBar('');
     });
   }
 
