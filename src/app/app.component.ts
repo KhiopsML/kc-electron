@@ -4,8 +4,6 @@ import {
   Component,
   ElementRef,
   NgZone,
-  OnDestroy,
-  OnInit,
   ViewChild,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,14 +11,14 @@ import { ElectronService } from './core/services/electron.service';
 import { ConfigService } from './core/services/config.service';
 import { MenuService } from './core/services/menu.service';
 import { FileSystemService } from './core/services/file-system.service';
-import { APP_CONFIG } from '../environments/environment';
+import { MatomoTracker } from 'ngx-matomo-client';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
+export class AppComponent implements AfterViewInit {
   @ViewChild('covisualizationComponent', {
     static: false,
   })
@@ -36,14 +34,27 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     private fileSystemService: FileSystemService,
     private configService: ConfigService,
     private translate: TranslateService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private matomoTracker: MatomoTracker
   ) {
     this.translate.setDefaultLang('en');
+    if (this.electronService.isElectron) {
+      // Get machine ID via IPC
+      this.electronService.ipcRenderer
+        ?.invoke('get-machine-id')
+        .then((machineId: string) => {
+          this.matomoTracker.requireConsent();
+          this.matomoTracker.requireCookieConsent();
+          this.matomoTracker.trackPageView();
+          this.matomoTracker.setVisitorId(machineId);
+          this.matomoTracker.enableFileTracking();
+        })
+        .catch((error: any) => {
+          console.error('Error getting machine ID:', error);
+        });
+    }
   }
 
-  ngOnDestroy(): void {}
-
-  ngOnInit(): void {}
   ngAfterViewInit() {
     this.setAppConfig();
     if (this.electronService.isElectron) {
@@ -54,14 +65,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   setAppConfig() {
     this.config = this.covisualizationComponent?.nativeElement;
 
-    // @ts-ignore
-    const trackerId = APP_CONFIG.TRACKER_ID || ''; // added during CI
-
     //@ts-ignore
     this.config.setConfig({
       appSource: 'ELECTRON',
       showProjectTab: true,
-      trackerId: trackerId,
       onFileOpen: () => {
         console.log('fileOpen');
         this.menuService.openFileDialog(() => {
@@ -79,6 +86,24 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       readLocalFile: (file: File | any, cb: Function) => {
         return this.readLocalFile(file, cb);
+      },
+      onSendEvent: (event: any) => {
+        if (event.message === 'forgetConsentGiven') {
+          this.matomoTracker.forgetConsentGiven();
+          this.matomoTracker.forgetCookieConsentGiven();
+          this.matomoTracker.deleteCookies();
+        } else if (event.message === 'setConsentGiven') {
+          this.matomoTracker.rememberConsentGiven();
+          this.matomoTracker.rememberCookieConsentGiven();
+          this.matomoTracker.forgetUserOptOut();
+        } else if (event.message === 'trackEvent') {
+          this.matomoTracker.trackEvent(
+            event.data?.category,
+            event.data?.action,
+            event.data?.name,
+            event.data?.value
+          );
+        }
       },
     });
     this.configService.setConfig(this.config);

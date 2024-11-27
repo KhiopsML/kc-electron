@@ -17,6 +17,8 @@ import {
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
+import { MatomoModule } from 'ngx-matomo-client';
+import { APP_CONFIG } from '../environments/environment';
 
 // AoT requires an exported function for factories
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
@@ -40,6 +42,15 @@ export function setupTranslateFactory(service: TranslateService) {
         useFactory: httpLoaderFactory,
         deps: [HttpClient],
       },
+    }),
+    MatomoModule.forRoot({
+      scriptUrl: 'https://matomo.apps.tech.orange/matomo.js',
+      trackers: [
+        {
+          trackerUrl: 'https://matomo.apps.tech.orange/',
+          siteId: APP_CONFIG.TRACKER_ID,
+        },
+      ],
     }),
   ],
   providers: [
