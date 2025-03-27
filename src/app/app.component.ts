@@ -74,10 +74,6 @@ export class AppComponent implements AfterViewInit {
           this.electronService.nativeImage.createFromDataURL(base64data);
         this.electronService.clipboard.writeImage(natImage);
       },
-      onThemeChanged: (data: string) => {
-        console.log('onThemeChanged', data);
-        this.setTheme(data);
-      },
       readLocalFile: (file: File | any, cb: Function) => {
         return this.readLocalFile(file, cb);
       },
@@ -92,20 +88,6 @@ export class AppComponent implements AfterViewInit {
       },
     });
     this.configService.setConfig(this.config);
-  }
-
-  setTheme(theme = 'light') {
-    (async () => {
-      try {
-        if (this.electronService.isElectron) {
-          await this.electronService.ipcRenderer?.invoke(
-            'set-' + theme + '-mode'
-          );
-        }
-      } catch (error) {
-        console.log('error', error);
-      }
-    })();
   }
 
   readLocalFile(input: File | any, cb: Function) {
