@@ -19,6 +19,7 @@ import { MenuService } from './core/services/menu.service';
 import { FileSystemService } from './core/services/file-system.service';
 import { TrackerService } from './core/services/tracker.service';
 import 'khiops-visualization';
+import { StorageService } from './core/services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -40,6 +41,7 @@ export class AppComponent implements AfterViewInit {
     public ngzone: NgZone,
     private electronService: ElectronService,
     private fileSystemService: FileSystemService,
+    private storageService: StorageService,
     private configService: ConfigService,
     private trackerService: TrackerService,
     private translate: TranslateService,
@@ -63,6 +65,7 @@ export class AppComponent implements AfterViewInit {
     //@ts-ignore
     this.config.setConfig({
       appSource: 'ELECTRON',
+      storage: 'ELECTRON',
       onFileOpen: () => {
         console.log('fileOpen');
         this.menuService.openFileDialog(() => {
@@ -77,13 +80,19 @@ export class AppComponent implements AfterViewInit {
       readLocalFile: (file: File | any, cb: Function) => {
         return this.readLocalFile(file, cb);
       },
-      onSendEvent: (event: { message: string; data: any }) => {
+      onSendEvent: (event: { message: string; data: any }, cb?: Function) => {
         if (event.message === 'forgetConsentGiven') {
           this.trackerService.forgetConsentGiven();
         } else if (event.message === 'setConsentGiven') {
           this.trackerService.setConsentGiven();
         } else if (event.message === 'trackEvent') {
           this.trackerService.trackEvent(event.data);
+        } else if (event.message === 'ls.getAll') {
+          cb && cb(this.storageService.getAll());
+        } else if (event.message === 'ls.saveAll') {
+          this.storageService.saveAll();
+        } else if (event.message === 'ls.delAll') {
+          this.storageService.delAll();
         }
       },
     });
@@ -159,8 +168,7 @@ export class AppComponent implements AfterViewInit {
       }
     );
     this.electronService.ipcRenderer?.on('before-quit', (event, arg) => {
-      console.info('before-quit', event, arg);
-      this.saveBeforeQuit();
+      this.beforeQuit();
     });
 
     this.constructMenu();
@@ -193,24 +201,28 @@ export class AppComponent implements AfterViewInit {
     });
   }
 
-  saveBeforeQuit(mustRestart: boolean = false) {
+  beforeQuit(mustRestart: boolean = false) {
     this.configService.openSaveBeforeQuitDialog((e: string) => {
       if (e === 'confirm') {
         const datasToSave = this.configService
           .getConfig()
           .constructDatasToSave();
         this.fileSystemService.save(datasToSave);
-        if (mustRestart) {
-          this.electronService.remote.app.relaunch();
-        }
-        this.electronService.remote.app.exit(0);
+        this.storageService.saveAll(() => {
+          if (mustRestart) {
+            this.electronService.remote.app.relaunch();
+          }
+          this.electronService.remote.app.exit(0);
+        });
       } else if (e === 'cancel') {
         // Do nothing
       } else if (e === 'reject') {
         if (mustRestart) {
           this.electronService.remote.app.relaunch();
         }
-        this.electronService.remote.app.exit(0);
+        this.storageService.saveAll(() => {
+          this.electronService.remote.app.exit(0);
+        });
       }
     });
   }
