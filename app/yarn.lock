@@ -64,10 +64,10 @@ electron-json-storage@4.6.0:
     rimraf "^2.5.1"
     write-file-atomic "^2.4.2"
 
-electron-log@3.0.9:
-  version "3.0.9"
-  resolved "https://registry.npmjs.org/electron-log/-/electron-log-3.0.9.tgz"
-  integrity sha512-kfV4riUqW8uooYLAfrlB3EJW66W29ePipJU4/Fm8UxQekVNcR2qHI/0tiJX3oWM79VdAUiiYqL9V49lhnSIO8g==
+electron-log@3.0.8:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-3.0.8.tgz#ea672dc40b560143ed5d887eff1ff1904fe9ef71"
+  integrity sha512-B9+eJ8z3UbDnWEz+G33SIJvEDeKLznHEV4sCu6bR31KuOdp3dYN046QBWbLNsvKU+lzFI6eOi+xNCpNHZvatiw==
 
 electron-updater@6.6.2:
   version "6.6.2"
