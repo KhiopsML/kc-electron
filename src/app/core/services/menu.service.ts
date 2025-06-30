@@ -28,6 +28,17 @@ export class MenuService {
     private storageService: StorageService
   ) {
     this.currentChannel = this.storageService.getOne('CHANNEL');
+
+    (async () => {
+      try {
+        await this.electronService.ipcRenderer?.invoke(
+          'launch-check-for-update',
+          this.currentChannel
+        );
+      } catch (error) {
+        console.log('error', error);
+      }
+    })();
   }
 
   setUpdateInProgress(value = false) {
@@ -318,7 +329,8 @@ export class MenuService {
     (async () => {
       try {
         await this.electronService.ipcRenderer?.invoke(
-          'launch-check-for-update'
+          'launch-check-for-update',
+          this.currentChannel
         );
       } catch (error) {
         console.log('error', error);
