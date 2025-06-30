@@ -5,10 +5,13 @@ remoteMain.initialize();
 import * as path from 'path';
 import * as fs from 'fs';
 const { autoUpdater } = require('electron-updater');
-const log = require('electron-log');
+import log from 'electron-log/main';
+log.initialize();
+
 import { machineIdSync } from 'node-machine-id';
 import * as url from 'url';
 const storage = require('electron-json-storage');
+require('electron-debug');
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1),
@@ -18,10 +21,9 @@ const { ipcMain } = require('electron');
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
-log.transports.file.level = 'info';
+// log.transports.file.level = 'info';
 // log.transports.file.file = __dirname + '/electron.log';
 log.warn('App starting...');
-log.error('App starting...');
 autoUpdater.autoInstallOnAppQuit = false;
 autoUpdater.autoDownload = false;
 autoUpdater.allowDowngrade = false;
@@ -100,9 +102,6 @@ function createWindow(): BrowserWindow {
   // win.webContents.openDevTools();
 
   if (serve) {
-    const debug = require('electron-debug');
-    debug();
-
     require('electron-reloader')(module);
     win.loadURL('http://localhost:4200');
 
@@ -209,8 +208,8 @@ ipcMain.handle('launch-check-for-update', async () => {
 });
 
 function checkForUpdates() {
-  const lsDatas = storage.get('KHIOPS_COVISUALIZATION_');
-  const userChannel = lsDatas['CHANNEL'] || 'latest';
+  const lsDatas = storage.getSync('KHIOPS_COVISUALIZATION_');
+  const userChannel = lsDatas?.['CHANNEL'] || 'latest';
   autoUpdater.allowPrerelease = userChannel === 'beta';
   log.info('checkForUpdates');
   autoUpdater.checkForUpdates();
