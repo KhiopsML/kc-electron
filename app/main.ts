@@ -5,8 +5,7 @@ remoteMain.initialize();
 import * as path from 'path';
 import * as fs from 'fs';
 const { autoUpdater } = require('electron-updater');
-import log from 'electron-log/main';
-log.initialize();
+const log = require('electron-log');
 
 import { machineIdSync } from 'node-machine-id';
 import * as url from 'url';
