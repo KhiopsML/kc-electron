@@ -21,7 +21,11 @@ jobs:
       - name: Replace SSH with HTTPS in yarn.lock (Linux/macOS)
         if: runner.os != 'Windows'
         run: |
-          sed -i 's#git+ssh://git@github.com#https://github.com#g' yarn.lock
+          if [[ "$(uname)" == "Darwin" ]]; then
+            sed -i '' 's#git+ssh://git@github.com#https://github.com#g' yarn.lock
+          else
+            sed -i 's#git+ssh://git@github.com#https://github.com#g' yarn.lock
+          fi
 
       - name: Replace SSH with HTTPS in yarn.lock (Windows)
         if: runner.os == 'Windows'
