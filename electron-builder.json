@@ -64,6 +64,9 @@
       }
     ]
   },
+  "dmg": {
+    "license": false
+  },
   "linux": {
     "icon": "dist/khiops-covisualization/icons/",
     "target": ["deb", "AppImage", "zip", "rpm"],
