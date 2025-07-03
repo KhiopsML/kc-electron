@@ -1,7 +1,6 @@
 // electron-reload.js
 const path = require("path");
 const fs = require("fs");
-const log = require("electron-log");
 
 module.exports = function setupReloading(mainWindow) {
   const libPath = path.resolve(
