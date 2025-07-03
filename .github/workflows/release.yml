@@ -128,7 +128,7 @@ jobs:
         shell: bash
         continue-on-error: true
 
-      - name: "Build Electron"
+      - name: Build/release Electron
         uses: samuelmeuli/action-electron-builder@v1.6.0
         with:
           build_script_name: "build:prod"
