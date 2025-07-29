@@ -4170,7 +4170,7 @@ boolean@^3.0.1:
   resolved "https://registry.npmjs.org/boolean/-/boolean-3.2.0.tgz"
   integrity sha512-d0II/GO9uf9lfUHH2BQsjxzRJZBdsjgsBiW4BvhWk/3qoKwQFjIDVN19PfX8F2D/r9PCMTtLWjYVCFrpeYUzsw==
 
-brace-expansion@4.0.1, brace-expansion@^1.1.12, brace-expansion@^2.0.1:
+brace-expansion@4.0.1, brace-expansion@^1.1.7, brace-expansion@^2.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-4.0.1.tgz#3387e13eaa2992025d05ea47308f77e4a8dedd1e"
   integrity sha512-YClrbvTCXGe70pU2JiEiPLYXO9gQkyxYeKpJIQHVS/gOs6EWMQP2RYBwjFLNT322Ji8TOC3IMPfsYCedNpzKfA==
@@ -7736,10 +7736,10 @@ keyv@^4.0.0, keyv@^4.5.4:
   dependencies:
     json-buffer "3.0.1"
 
-khiops-visualization@11.9.0:
-  version "11.9.0"
-  resolved "https://registry.yarnpkg.com/khiops-visualization/-/khiops-visualization-11.9.0.tgz#e3c0e09cf48bd248924c5e9ba5844cf63a6c60ac"
-  integrity sha512-pRZG7btaQ/6JG+/3Ee6mGyiMz6lPpQRmx4js16Osbw06Di1gm9riNHOcfyBsaRZ9JRKLF/pDYy6ot0zvsY3sRA==
+khiops-visualization@11.9.1:
+  version "11.9.1"
+  resolved "https://registry.yarnpkg.com/khiops-visualization/-/khiops-visualization-11.9.1.tgz#f0eb35d03936a605d6f39f5d6c0ef6e5522cb1e9"
+  integrity sha512-6gjzsFiauzsdKzzqJWnQt+N8Y7hRxc8nBJP3sjgUp9rDDLl9W8z9Tf03gBU37YU3mWcDjvBgx9utIZYs4r7C+w==
 
 kind-of@^6.0.2:
   version "6.0.3"
