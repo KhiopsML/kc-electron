@@ -240,20 +240,32 @@ jobs:
         continue-on-error: true
 
       # Rename signed exe from khiops.covisualization.Setup-X.Y.Z.exe to khiops-covisualization-Setup-X.Y.Z.exe
-      - name: Rename signed executable khiops-covisualization-Setup-*.exe
+      # and blockmap from khiops.covisualization.Setup-X.Y.Z.exe.blockmap to khiops-covisualization-Setup-X.Y.Z.exe.blockmap
+      - name: Rename signed executable and blockmap khiops-covisualization-Setup-*.exe
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          Write-Output "🔄 Renaming signed executable..."
+          Write-Output "🔄 Renaming signed executable and blockmap..."
           # Find the signed executable and rename it
           $signed_exe = Get-ChildItem -Path release -Filter "khiops covisualization Setup *.exe" | Select-Object -First 1
           if (-not $signed_exe) {
             Write-Output "❌ No signed executable found to rename"
             exit 1
           }
-          $new_name = "release/khiops-covisualization-Setup-$($env:GITHUB_REF.Split('/')[-1].TrimStart('v')).exe"
-          Move-Item $signed_exe.FullName $new_name
-          Write-Output "✅ Renamed signed executable to: $new_name"
+          $version = $env:GITHUB_REF.Split('/')[-1].TrimStart('v')
+          $new_exe_name = "release/khiops-covisualization-Setup-$version.exe"
+          Move-Item $signed_exe.FullName $new_exe_name
+          Write-Output "✅ Renamed signed executable to: $new_exe_name"
+          
+          # Find and rename the corresponding blockmap file
+          $blockmap_file = Get-ChildItem -Path release -Filter "khiops covisualization Setup *.exe.blockmap" | Select-Object -First 1
+          if ($blockmap_file) {
+            $new_blockmap_name = "release/khiops-covisualization-Setup-$version.exe.blockmap"
+            Move-Item $blockmap_file.FullName $new_blockmap_name
+            Write-Output "✅ Renamed blockmap file to: $new_blockmap_name"
+          } else {
+            Write-Output "⚠️ No blockmap file found to rename"
+          }
         continue-on-error: true
 
       # Udpate latest.yml sha for Windows
@@ -296,16 +308,8 @@ jobs:
           name: ${{ steps.version.outputs.VERSION }}
           artifacts: |
             release/*Setup*.exe
-            release/*.dmg
-            release/*.AppImage
-            release/*.deb
-            release/*.rpm
-            release/*.zip
-            release/*.tar.gz
-            release/latest-linux.yml
-            release/latest-mac.yml
             release/latest.yml
-            release/*.blockmap
+            release/*exe.blockmap
           generateReleaseNotes: true
           draft: true
         continue-on-error: true
