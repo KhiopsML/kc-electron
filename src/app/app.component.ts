@@ -47,8 +47,8 @@ export class AppComponent implements AfterViewInit {
     private translate: TranslateService,
     private menuService: MenuService
   ) {
-    this.translate.setDefaultLang('en');
-
+    this.translate.setFallbackLang('en');
+    
     this.trackerService.initialize();
   }
 
