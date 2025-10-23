@@ -34,7 +34,8 @@ export class AppComponent implements AfterViewInit {
   covisualizationComponent?: ElementRef<HTMLElement>;
 
   config: any;
-  btnUpdateText?: string;
+  btnUpdateText: string =
+    '✅ ' + this.translate.instant('GLOBAL_UPDATE_UP_TO_DATE');
   btnUpdate?: string;
 
   constructor(
@@ -48,7 +49,7 @@ export class AppComponent implements AfterViewInit {
     private menuService: MenuService
   ) {
     this.translate.setFallbackLang('en');
-    
+
     this.trackerService.initialize();
   }
 
