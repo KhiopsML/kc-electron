@@ -12,6 +12,7 @@ debug.log
 /.cache
 /.private_keys
 .angular
+/.yarn/*
 
 # dependencies
 /node_modules
